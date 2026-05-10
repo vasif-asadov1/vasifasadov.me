@@ -1,13 +1,13 @@
 // @ts-check
-import { defineConfig } from 'astro/config'; // 'astro:config' yerine 'astro/config' deniyoruz
+import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
 export default defineConfig({
-  // GitHub Pages Ayarları
+  // KANKA BURAYI REPO ADINA GÖRE GÜNCELLEDİK:
   site: 'https://vasif-asadov1.github.io',
-  base: '/',
+  base: '/vasifasadov.me', // Alt klasör yolunu belirttik
   
   vite: {
     plugins: [tailwindcss()]
