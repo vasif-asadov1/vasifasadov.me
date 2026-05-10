@@ -1,17 +1,248 @@
 ---
-
+import MainLayout from '../layouts/MainLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="Home">
+  
+  <section class="flex flex-col-reverse md:flex-row gap-10 items-center mb-20 mt-8">
+    <div class="flex-1 space-y-6">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white tracking-tight">
+        Vasif Asadov
+      </h1>
+      <h2 class="text-xl md:text-2xl font-medium text-blue-600 dark:text-blue-400">
+        Data Scientist | Control & Automation Engineer
+      </h2>
+      <div class="text-gray-600 dark:text-gray-300 space-y-4 text-base md:text-lg leading-relaxed text-justify">
+        <p>
+          I am Vasif Asadov, a Data Scientist and Master's student in Control and Automation Engineering at Yildiz Technical University. My analytical foundation was established early — a perfect score of 700/700 on the Azerbaijan National Entrance Exam earned me a Presidential Scholarship, and that same precision carries into everything I build today.
+        </p>
+        <p>
+          My path into data science is rooted in real engineering experience. At SOCAR, one of the region's largest energy companies, I worked hands-on with SQL Server for data management and plant automation systems. That foundation led me to a 6-month Full Stack Data Science internship, where I took ownership of the entire ML pipeline — from raw data cleaning and exploratory analysis all the way through to model deployment using Python, SQL, R, and Tableau.
+        </p>
+        <p>
+          On the analytics side, I hold a <strong class="text-gray-900 dark:text-gray-100">Microsoft Certified Power BI Data Analyst Associate</strong> certification and have built production-grade dashboards that directly support business decision-making. I gravitate toward high-performance tooling — DuckDB and Polars are my go-to stack for fast, efficient data processing, and I document everything meticulously using Markdown, Quarto, and LaTeX.
+        </p>
+        <p>
+          Currently, my Master's thesis sits at the intersection of deep learning and control theory: <strong class="text-gray-900 dark:text-gray-100">AI-based Model Predictive Control of Nonlinear Systems</strong>. I am drawn to problems where rigorous engineering meets modern machine learning — and I build systems that are not just accurate, but production-ready, automated, and built to last.
+        </p>
+      </div>
+    </div>
+    
+	<div class="w-48 h-48 md:w-72 md:h-72 shrink-0 rounded-full overflow-hidden border-4 border-white dark:border-slate-800 shadow-xl">
+      <img src="/images/profile.png" alt="Vasif Asadov - Data Scientist" class="w-full h-full object-cover" />
+    </div>
+  </section>
+
+  <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+    
+    <div>
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-b-2 border-blue-600 inline-block pb-1">Experience</h3>
+      <div class="space-y-6">
+        
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700">
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <h4 class="text-lg font-bold text-gray-900 dark:text-white">Data Scientist Intern</h4>
+              <p class="text-blue-600 dark:text-blue-400 font-medium">Data Science Academy | Remote</p>
+            </div>
+            <span class="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-slate-700 px-3 py-1 rounded-full whitespace-nowrap">Jul 2025 - Jan 2026</span>
+          </div>
+          <ul class="list-disc list-outside ml-5 mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li>Conducted exploratory data analysis and advanced preprocessing on structured datasets, engineering predictive features for end-to-end machine learning workflows.</li>
+            <li>Built and optimized machine learning models using Python and Scikit-Learn, applying cross-validation, hyperparameter tuning, and performance metrics to improve generalization.</li>
+            <li>Performed statistical analysis and hypothesis testing to validate model assumptions and communicated results through visualizations and technical reports.</li>
+            <li>Developed interactive Power BI and Tableau dashboards to present model outputs and business KPIs to stakeholders.</li>
+          </ul>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700">
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <h4 class="text-lg font-bold text-gray-900 dark:text-white">Data Management Intern</h4>
+              <p class="text-blue-600 dark:text-blue-400 font-medium">R&D Institute of Oil and Gas (SOCAR) | Baku</p>
+            </div>
+            <span class="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-slate-700 px-3 py-1 rounded-full whitespace-nowrap">Mar 2023 - May 2023</span>
+          </div>
+          <ul class="list-disc list-outside ml-5 mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li>Managed, validated, and optimized plant sensor data in Microsoft SQL Server, ensuring data accuracy, availability, and efficient storage and retrieval of industrial datasets.</li>
+            <li>Developed automated SQL triggers for threshold-based alerts, supporting reporting workflows by maintaining clean, reliable operational data to improve monitoring efficiency.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div>
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-b-2 border-blue-600 inline-block pb-1">Education</h3>
+      <div class="space-y-6">
+        
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700">
+          <h4 class="text-lg font-bold text-gray-900 dark:text-white">Master's Degree - Control & Automation Eng.</h4>
+          <p class="text-blue-600 dark:text-blue-400 font-medium">Yildiz Technical University | Istanbul, Türkiye</p>
+          <ul class="list-disc list-outside ml-5 mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li>Fully Funded Türkiye Scholarship for Master Education.</li>
+            <li>Thesis: Deep Learning Based Model Predictive Control of Nonlinear Systems.</li>
+          </ul>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700">
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <h4 class="text-lg font-bold text-gray-900 dark:text-white">Bachelor's Degree - Process Automation Eng.</h4>
+              <p class="text-blue-600 dark:text-blue-400 font-medium">Baku Higher Oil School | Baku, Azerbaijan</p>
+            </div>
+            <span class="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-slate-700 px-3 py-1 rounded-full whitespace-nowrap">Sep 2018 - Jun 2023</span>
+          </div>
+          <ul class="list-disc list-outside ml-5 mt-4 space-y-2 text-sm text-gray-600 dark:text-gray-300">
+            <li>Azerbaijan Presidency Scholarship for Bachelor Education.</li>
+            <li>Graduated with GPA: 3.5/4.0.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <section class="mb-20">
+    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-b-2 border-blue-600 inline-block pb-1">Technical Skills</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <div class="bg-gray-50 dark:bg-slate-800/50 p-6 rounded-xl">
+        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Programming</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-sm font-medium rounded-md">Python (Pandas, NumPy, Scikit-Learn, PySpark)</span>
+          <span class="px-3 py-1 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-sm font-medium rounded-md">R (tidyverse, data.table, shiny)</span>
+          <span class="px-3 py-1 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 text-sm font-medium rounded-md">LaTeX</span>
+        </div>
+      </div>
+
+      <div class="bg-gray-50 dark:bg-slate-800/50 p-6 rounded-xl">
+        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Machine Learning</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200 text-sm font-medium rounded-md">Supervised/Unsupervised</span>
+          <span class="px-3 py-1 bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200 text-sm font-medium rounded-md">Regression & Classification</span>
+          <span class="px-3 py-1 bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200 text-sm font-medium rounded-md">XGBoost & LightGBM</span>
+          <span class="px-3 py-1 bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200 text-sm font-medium rounded-md">SHAP & WOE Encoding</span>
+        </div>
+      </div>
+
+      <div class="bg-gray-50 dark:bg-slate-800/50 p-6 rounded-xl">
+        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Databases</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 text-sm font-medium rounded-md">MS SQL Server</span>
+          <span class="px-3 py-1 bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 text-sm font-medium rounded-md">PostgreSQL & MySQL</span>
+          <span class="px-3 py-1 bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 text-sm font-medium rounded-md">Oracle (PL/SQL)</span>
+          <span class="px-3 py-1 bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 text-sm font-medium rounded-md">DuckDB</span>
+        </div>
+      </div>
+
+      <div class="bg-gray-50 dark:bg-slate-800/50 p-6 rounded-xl">
+        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-4">BI, Visualization & Cloud</h4>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200 text-sm font-medium rounded-md">Power BI & Tableau</span>
+          <span class="px-3 py-1 bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200 text-sm font-medium rounded-md">Plotly</span>
+          <span class="px-3 py-1 bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200 text-sm font-medium rounded-md">AWS & Snowflake</span>
+          <span class="px-3 py-1 bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200 text-sm font-medium rounded-md">Git & Docker</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="mb-20">
+    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 border-b-2 border-blue-600 inline-block pb-1">Certifications</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <a href="/certificates/ms_powerbi.pdf" target="_blank" class="block p-6 bg-indigo-50/50 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-800/50 rounded-xl hover:shadow-md hover:border-indigo-300 dark:hover:border-indigo-500 transition-all group">
+        <strong class="block text-lg text-indigo-700 dark:text-indigo-400 group-hover:text-indigo-600 mb-1">Microsoft Certified: Power BI Analyst</strong>
+        <span class="text-sm text-gray-500 dark:text-gray-400">PL-300 Associate Certificate</span>
+      </a>
+
+      <a href="/certificates/data_science_academy_certificate.pdf" target="_blank" class="block p-6 bg-indigo-50/50 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-800/50 rounded-xl hover:shadow-md hover:border-indigo-300 dark:hover:border-indigo-500 transition-all group">
+        <strong class="block text-lg text-indigo-700 dark:text-indigo-400 group-hover:text-indigo-600 mb-1">Full Stack Data Scientist</strong>
+        <span class="text-sm text-gray-500 dark:text-gray-400">Data Science Academy Certificate</span>
+      </a>
+
+      <a href="/certificates/talent_report_snapshot.pdf" target="_blank" class="block p-6 bg-emerald-50/50 dark:bg-emerald-900/10 border border-emerald-100 dark:border-emerald-800/50 rounded-xl hover:shadow-md hover:border-emerald-300 dark:hover:border-emerald-500 transition-all group">
+        <strong class="block text-lg text-emerald-700 dark:text-emerald-400 group-hover:text-emerald-600 mb-1">Talent Report Snapshot</strong>
+        <span class="text-sm text-gray-500 dark:text-gray-400">One-Page Performance Summary</span>
+      </a>
+
+      <a href="/certificates/vasif_asadov_talent_report.pdf" target="_blank" class="block p-6 bg-indigo-50/50 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-800/50 rounded-xl hover:shadow-md hover:border-indigo-300 dark:hover:border-indigo-500 transition-all group">
+        <strong class="block text-lg text-indigo-700 dark:text-indigo-400 group-hover:text-indigo-600 mb-1">Data Talent Report</strong>
+        <span class="text-sm text-gray-500 dark:text-gray-400">Full Technical & Soft Skill Evaluation</span>
+      </a>
+
+      <a href="/certificates/sql_certificate.pdf" target="_blank" class="block p-6 bg-indigo-50/50 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-800/50 rounded-xl hover:shadow-md hover:border-indigo-300 dark:hover:border-indigo-500 transition-all group">
+        <strong class="block text-lg text-indigo-700 dark:text-indigo-400 group-hover:text-indigo-600 mb-1">Advanced SQL Certification</strong>
+        <span class="text-sm text-gray-500 dark:text-gray-400">BTK Academy Professional Development</span>
+      </a>
+
+      <a href="/certificates/vasif_asadov_toefl.pdf" target="_blank" class="block p-6 bg-indigo-50/50 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-800/50 rounded-xl hover:shadow-md hover:border-indigo-300 dark:hover:border-indigo-500 transition-all group">
+        <strong class="block text-lg text-indigo-700 dark:text-indigo-400 group-hover:text-indigo-600 mb-1">TOEFL iBT Score Report</strong>
+        <span class="text-sm text-gray-500 dark:text-gray-400">English Proficiency (C1 Level)</span>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="mb-10">
+    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4 border-b-2 border-blue-600 inline-block pb-1">About This Platform</h3>
+    <p class="text-gray-600 dark:text-gray-300 mb-8">This platform is my official digital space. My goal is to provide a structured environment where I share my technical journey across five main categories.</p>
+    
+    <div class="space-y-6">
+      
+      <div class="flex flex-col md:flex-row gap-6 p-6 bg-indigo-50/30 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-800/50 border-l-4 border-l-indigo-600 rounded-lg items-center">
+        <div class="md:w-1/4 shrink-0">
+          <h4 class="text-xl font-bold text-indigo-700 dark:text-indigo-400">Data Analysis</h4>
+        </div>
+        <div class="md:w-3/4">
+          <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Comprehensive projects shared with <em class="italic">full documentation and source code</em>. This section covers complex queries across multiple engines (<strong class="font-semibold text-gray-900 dark:text-gray-100">T-SQL, PL/SQL, PostgreSQL, DuckDB</strong>) and interactive dashboards.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row gap-6 p-6 bg-indigo-50/30 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-800/50 border-l-4 border-l-indigo-600 rounded-lg items-center">
+        <div class="md:w-1/4 shrink-0">
+          <h4 class="text-xl font-bold text-indigo-700 dark:text-indigo-400">Data Science</h4>
+        </div>
+        <div class="md:w-3/4">
+          <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Advanced implementation of <strong class="font-semibold text-gray-900 dark:text-gray-100">Regression, Classification, and Clustering</strong> models, focusing heavily on building robust <em class="italic">end-to-end machine learning pipelines</em>.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row gap-6 p-6 bg-indigo-50/30 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-800/50 border-l-4 border-l-indigo-600 rounded-lg items-center">
+        <div class="md:w-1/4 shrink-0">
+          <h4 class="text-xl font-bold text-indigo-700 dark:text-indigo-400">Data Articles</h4>
+        </div>
+        <div class="md:w-3/4">
+          <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">A collection of my research and curated readings regarding <strong class="font-semibold text-gray-900 dark:text-gray-100">Machine Learning and AI</strong>, concentrating on "must-know" topics for Data Science interviews.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row gap-6 p-6 bg-indigo-50/30 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-800/50 border-l-4 border-l-indigo-600 rounded-lg items-center">
+        <div class="md:w-1/4 shrink-0">
+          <h4 class="text-xl font-bold text-indigo-700 dark:text-indigo-400">Linux Roadmap</h4>
+        </div>
+        <div class="md:w-3/4">
+          <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">As a dedicated Linux user, I share my experiences with various <strong class="font-semibold text-gray-900 dark:text-gray-100">Distros and DEs</strong>, providing clear guides on technical challenges for high-performance setups.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row gap-6 p-6 bg-indigo-50/30 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-800/50 border-l-4 border-l-indigo-600 rounded-lg items-center">
+        <div class="md:w-1/4 shrink-0">
+          <h4 class="text-xl font-bold text-indigo-700 dark:text-indigo-400">Master Thesis</h4>
+        </div>
+        <div class="md:w-3/4">
+          <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">A dedicated log of my academic journey building a bridge between <strong class="font-semibold text-gray-900 dark:text-gray-100">AI and Classical Control Theory</strong>. This section is constantly updated.</p>
+        </div>
+      </div>
+
+    </div>
+    
+    <p class="text-center text-sm text-gray-500 dark:text-gray-400 italic mt-12 mb-8">
+      I hope you find the content here valuable. Feel free to contact me regarding any technical topics, collaborations, or feedback. I am committed to maintaining this site as a high-quality knowledge base.
+    </p>
+  </section>
+
+</MainLayout>

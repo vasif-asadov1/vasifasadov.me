@@ -1,0 +1,57 @@
+---
+// Astro v5'in yeni render fonksiyonunu içeri aktarıyoruz
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('linux_roadmap');
+  
+  return entries.map((entry, index) => {
+    // SENIOR DOKUNUŞU: 'index' ismini URL'den tamamen temizliyoruz.
+    let cleanSlug = entry.id;
+    if (cleanSlug === 'index') {
+      cleanSlug = undefined; // Ana klasörün index.md'si için
+    } else if (cleanSlug.endsWith('/index')) {
+      cleanSlug = cleanSlug.replace(/\/index$/, ''); // Alt klasörlerin index.md'si için
+    }
+
+    return {
+      params: { slug: cleanSlug },
+      props: { 
+        entry,
+        next: entries[index + 1],
+        prev: entries[index - 1]
+      },
+    };
+  });
+}
+
+const { entry, next, prev } = Astro.props;
+
+// İşte hata aldığımız kısmı Astro v5 standartlarına göre değiştirdik:
+const { Content, headings } = await render(entry);
+---
+
+<ArticleLayout frontmatter={entry.data} headings={headings}>
+  <Content />
+
+  {/* SENIOR DOKUNUŞU: Sadece ID'si 'index' OLMAYAN sayfalarda bu butonları göster */}
+  {entry.id !== 'index' && (
+    <div class="mt-16 pt-8 border-t border-gray-200 dark:border-slate-800 flex justify-between items-center not-prose">
+      {prev ? (
+        <a href={`/linux-roadmap/${prev.id === 'index' ? '' : prev.id}`} class="flex flex-col gap-1 group">
+          <span class="text-xs text-gray-500 uppercase tracking-wider">Previous</span>
+          <span class="text-blue-600 dark:text-blue-400 font-medium group-hover:underline">← {prev.data.title}</span>
+        </a>
+      ) : <div></div>}
+
+      {next ? (
+        <a href={`/linux-roadmap/${next.id === 'index' ? '' : next.id}`} class="flex flex-col gap-1 items-end group text-right">
+          <span class="text-xs text-gray-500 uppercase tracking-wider">Next</span>
+          <span class="text-blue-600 dark:text-blue-400 font-medium group-hover:underline">{next.data.title} →</span>
+        </a>
+      ) : <div></div>}
+    </div>
+  )}
+
+</ArticleLayout>

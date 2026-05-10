@@ -1,0 +1,1144 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Markdown İçerik Stilleri */
+.prose table {
+  width: 100%;
+  display: block;
+  overflow-x: auto; /* Yatay kaydırma */
+  white-space: nowrap;
+  border-collapse: collapse;
+  margin: 2rem 0;
+}
+
+.prose th, .prose td {
+  border: 1px solid #374151; /* dark mode uyumlu border */
+  padding: 0.75rem;
+  text-align: left;
+}
+
+/* ═════════════════════════════════════════════════
+   PREMIUM SCROLLABLE TABLES (STICKY HEADER & LILAC NEON)
+══════════════════════════════════════════════════ */
+
+/* 1. Kapsayıcı (Wrapper) Kutumuz: Hafif Lila Neon ve Scroll */
+.scrollable-table {
+  width: 100%;
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: auto;
+  margin: 2.5rem 0;
+  background-color: rgba(15, 23, 42, 0.4); /* Koyu Arka Plan */
+  border: 1px solid rgba(192, 132, 252, 0.3); /* Zarif Lila Çizgi */
+  border-radius: 0.75rem;
+  
+  /* Hafif Neon Efekti: Lila tonlarında iç içe gölge */
+  box-shadow: 0 0 15px rgba(192, 132, 252, 0.08), 0 0 5px rgba(192, 132, 252, 0.03);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Üzerine gelince neon efekti biraz daha canlansın */
+.scrollable-table:hover {
+  box-shadow: 0 0 20px rgba(192, 132, 252, 0.15), 0 0 10px rgba(192, 132, 252, 0.08);
+  border-color: rgba(192, 132, 252, 0.6);
+}
+
+/* Tablo Kaydırma Çubuğu (Lila Uyumlu) */
+.scrollable-table::-webkit-scrollbar { width: 6px; height: 6px; }
+.scrollable-table::-webkit-scrollbar-track { background: transparent; }
+.scrollable-table::-webkit-scrollbar-thumb { background-color: rgba(192, 132, 252, 0.3); border-radius: 10px; }
+.scrollable-table:hover::-webkit-scrollbar-thumb { background-color: rgba(192, 132, 252, 0.6); }
+
+/* 2. Tablonun Kendisi */
+.scrollable-table table, .prose .scrollable-table table {
+  width: 100%;
+  min-width: 600px; 
+  border-collapse: separate; 
+  border-spacing: 0;
+  white-space: nowrap;
+  margin: 0 !important;
+}
+
+/* 3. Sticky Başlıklar (Headers) */
+.scrollable-table th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  
+  background-color: #0f172a; 
+  color: #c084fc !important; /* Sicak Lila Metin */
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 1.25rem;
+  text-align: left;
+  
+  /* Alt çizgi efekti lila tonunda */
+  box-shadow: inset 0 -2px 0 rgba(192, 132, 252, 0.4);
+}
+
+/* 4. Hücreler (Cells) ve Satırlar */
+.scrollable-table td {
+  padding: 1rem 1.25rem;
+  color: #cbd5e1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
+  font-size: 0.9rem;
+}
+
+.scrollable-table tr:last-child td {
+  border-bottom: none; 
+}
+
+/* Satır Hover Efekti (Farenin olduğu satır lila parlar) */
+.scrollable-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+.scrollable-table tbody tr:hover td {
+  background-color: rgba(192, 132, 252, 0.08); /* Okumayı kolaylaştıran şık lila focus efekti */
+}
+
+/* =========================================================
+   Düz (Wrapper'sız) Markdown Tabloları İçin Yedek (Fallback)
+========================================================== */
+.prose table:not(.scrollable-table table) {
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 2rem 0;
+}
+.prose table:not(.scrollable-table table) th, .prose table:not(.scrollable-table table) td {
+  border: 1px solid #374151;
+  padding: 0.75rem;
+}
+
+/* Kod Bloğu Kopyalama Butonu Hazırlığı */
+pre {
+  position: relative;
+  padding: 1.5rem !important;
+  border-radius: 0.75rem !important;
+  border: 1px solid #44475a !important; /* Dracula border rengi */
+}
+/* MKDOCS MATERIAL PREMIUM DARK THEME OVERRIDES (Sistem Karanlık Moduna Uyumlu) */
+@media (prefers-color-scheme: dark) {
+  .prose {
+    --tw-prose-body: #e2e8f0 !important;
+    --tw-prose-links: #2dd4bf !important;
+    --tw-prose-bold: #ffffff !important;
+    --tw-prose-code: #f8fafc !important;
+    --tw-prose-quotes: #cbd5e1 !important;
+  }
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    color: #e9d5ff !important; /* Çok açık lila/mor */
+    border-left: 4px solid #c084fc; /* Başlıkların yanına şık bir lila çizgi ekler */
+    padding-left: 0.75rem;
+  }
+
+  .prose h1 { color: #2dd4bf !important; font-size: 2.25rem !important; } /* Ana Başlık */
+  .prose h2 { color: #2dd4bf !important; border-bottom: 1px solid rgba(45, 212, 191, 0.2); padding-bottom: 0.5rem; } /* Bölüm Başlığı */
+  .prose h3 { color: #5eead4 !important; } /* Alt Başlık (Bir tık daha açık ton) */
+
+  /* Linklerin üzerine gelince parlaması için */
+  .prose a:hover {
+    color: #14b8a6 !important;
+    text-decoration-color: #14b8a6 !important;
+  }
+}
+
+/* ═════════════════════════════════════════════════
+   "SHOW CODE" BUTTONS (DETAILS & SUMMARY) STYLING
+══════════════════════════════════════════════════ */
+.prose details {
+  background-color: rgba(15, 23, 42, 0.4); /* Çok hafif karanlık arka plan */
+  border: 1px solid rgba(45, 212, 191, 0.3); /* Sitemizin o meşhur Turkuaz/Teal rengi */
+  border-radius: 0.75rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+}
+
+.prose details:hover {
+  border-color: rgba(45, 212, 191, 0.6);
+}
+
+.prose summary {
+  /* Turkuaz tonlarında havalı bir gradyan arka plan */
+  background: linear-gradient(to right, rgba(20, 184, 166, 0.15), rgba(20, 184, 166, 0.05));
+  color: #2dd4bf !important; /* Parlak Turkuaz Metin */
+  padding: 0.85rem 1.25rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  list-style: none; /* Tarayıcının çirkin ok işaretini gizler */
+  position: relative;
+  transition: all 0.3s ease;
+  margin: 0 !important; /* Tailwind prose marginlerini ezer */
+}
+
+.prose summary:hover {
+  background: linear-gradient(to right, rgba(20, 184, 166, 0.25), rgba(20, 184, 166, 0.1));
+  color: #5eead4 !important; /* Üzerine gelince daha da parlar */
+}
+
+/* WebKit (Chrome/Safari) varsayılan ok işaretini gizleme */
+.prose summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Kendi Şık Animasyonlu Ok İkoni'muzu Ekliyoruz */
+.prose summary::before {
+  content: '▶';
+  display: inline-block;
+  margin-right: 0.75rem;
+  font-size: 0.85em;
+  transition: transform 0.3s ease;
+  color: #2dd4bf;
+}
+
+/* Kod bloğu açıldığında okun aşağı dönme animasyonu */
+.prose details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+/* Kod bloğu açıldığında butonun alt çizgisi */
+.prose details[open] summary {
+  border-bottom: 1px solid rgba(45, 212, 191, 0.2);
+}
+
+/* İçerideki kod bloğunun (pre) boşluklarını sıfırlayıp butona tam yapışmasını sağlıyoruz */
+.prose details pre {
+  margin: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border: none !important;
+}
+
+
+
+
+/* ═════════════════════════════════════════════════
+   INLINE CODE STYLING (Tek Tırnak İçindeki Kodlar - GÖZ YORMAYAN)
+══════════════════════════════════════════════════ */
+
+.prose code::before,
+.prose code::after {
+  content: none !important;
+}
+
+.prose :not(pre) > code {
+  background-color: rgba(49, 89, 90, 0.4); /* Mat ve yumuşak koyu gri arka plan */
+  color: #e2e8f0 !important; /* Göz yormayan, soft kırık beyaz/açık gri metin */
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.375rem;
+  font-size: 0.85em !important;
+  font-family: "Fira Code", Consolas, Monaco, monospace !important;
+  border: 1px solid rgba(148, 163, 184, 0.2); /* Neredeyse görünmez, çok zarif mat çerçeve */
+  word-break: break-word;
+  font-weight: 500;
+}
+
+/* ═════════════════════════════════════════════════
+   CALLOUTS (NOTE, ATTENTION, SUCCESS, WARNING, DANGER)
+══════════════════════════════════════════════════ */
+.prose .callout {
+  margin: 2rem 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid;
+  background-color: rgba(30, 41, 59, 0.4); /* Varsayılan Arka Plan */
+}
+
+/* Callout Başlığı (İkon + Metin) */
+.prose .callout-title {
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0.5rem !important;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Callout İçeriği */
+.prose .callout p {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #cbd5e1; /* Slate-300 */
+}
+
+/* Birden fazla paragraf varsa aralarını aç */
+.prose .callout p + p {
+  margin-top: 0.75rem !important;
+}
+
+/* 1. NOTE (Mavi) */
+.prose .callout.note {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-left-color: #3b82f6;
+}
+.prose .callout.note .callout-title { color: #60a5fa !important; }
+
+/* 2. ATTENTION (Sarı) */
+.prose .callout.attention {
+  background-color: rgba(245, 158, 11, 0.1);
+  border-left-color: #f59e0b;
+}
+.prose .callout.attention .callout-title { color: #fbbf24 !important; }
+
+/* 3. SUCCESS / ACCEPTANCE (Yeşil) */
+.prose .callout.success {
+  background-color: rgba(16, 185, 129, 0.1);
+  border-left-color: #10b981;
+}
+.prose .callout.success .callout-title { color: #34d399 !important; }
+
+/* 4. WARNING (Turuncu) */
+.prose .callout.warning {
+  background-color: rgba(249, 115, 22, 0.1);
+  border-left-color: #f97316;
+}
+.prose .callout.warning .callout-title { color: #fb923c !important; }
+
+/* 5. DANGER (Kırmızı) */
+.prose .callout.danger {
+  background-color: rgba(244, 63, 94, 0.1);
+  border-left-color: #f43f5e;
+}
+.prose .callout.danger .callout-title { color: #fb7185 !important; }
+
+
+/* ═════════════════════════════════════════════════
+   MARKDOWN IN-PAGE CARDS (GRID & ROW VIEWS)
+══════════════════════════════════════════════════ */
+
+/* --- 1. KAPSAYICILAR (CONTAINERS) --- */
+
+/* Yan Yana (Responsive Grid) Görünümü */
+.prose .md-grid {
+  display: grid;
+  /* Sihir burada: Kartlar minimum 250px olur, sığdığı kadar yan yana dizilir. Ekrana göre otomatik 1, 2, 3 veya 4 kolon olur! */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+/* Alt Alta (Row) Görünümü */
+.prose .md-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+/* --- 2. KARTIN KENDİSİ (BASE CARD) --- */
+.prose .md-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1.5rem;
+  background-color: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 4px solid #475569; /* Varsayılan Gri Sol Çizgi */
+  border-radius: 0.75rem;
+  text-decoration: none !important; /* Tailwind'in link alt çizgisini ezer */
+  transition: all 0.3s ease;
+}
+
+/* Grid Kartları Hover Animasyonu (Yukarı Kalkar) */
+.prose .md-grid .md-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+}
+
+/* Row Kartları Hover Animasyonu (Sağa Kayar) */
+.prose .md-row .md-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+/* Kart İçerikleri */
+.prose .md-card-title {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0.5rem !important;
+  color: #f8fafc !important;
+  transition: color 0.3s ease;
+}
+
+.prose .md-card-desc {
+  font-size: 0.9rem !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+  color: #94a3b8 !important;
+}
+
+/* --- 3. RENK SEÇENEKLERİ --- */
+
+/* Turkuaz (Teal) */
+.prose .md-card.teal { border-left-color: #14b8a6; }
+.prose .md-card.teal:hover { border-color: #14b8a6; background-color: rgba(20, 184, 166, 0.05); }
+.prose .md-card.teal:hover .md-card-title { color: #2dd4bf !important; }
+
+/* Mavi / İndigo (Linux Tarzı) */
+.prose .md-card.indigo { border-left-color: #6366f1; }
+.prose .md-card.indigo:hover { border-color: #6366f1; background-color: rgba(99, 102, 241, 0.05); }
+.prose .md-card.indigo:hover .md-card-title { color: #818cf8 !important; }
+
+/* Pembe / Gül (ML Tarzı) */
+.prose .md-card.rose { border-left-color: #f43f5e; }
+.prose .md-card.rose:hover { border-color: #f43f5e; background-color: rgba(244, 63, 94, 0.05); }
+.prose .md-card.rose:hover .md-card-title { color: #fb7185 !important; }
+
+/* Sarı / Kehribar (Dikkat Çekici) */
+.prose .md-card.amber { border-left-color: #f59e0b; }
+.prose .md-card.amber:hover { border-color: #f59e0b; background-color: rgba(245, 158, 11, 0.05); }
+.prose .md-card.amber:hover .md-card-title { color: #fbbf24 !important; }
+
+
+/* ═════════════════════════════════════════════════
+   MARKDOWN GALLERY CARDS (IMAGE + TEXT VIEW)
+══════════════════════════════════════════════════ */
+
+/* Galeri Kapsayıcısı (Grid Yapısı) */
+.prose .md-gallery {
+  display: grid;
+  /* Resimli kartların biraz daha geniş durması iyidir (280px) */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+/* Galeri Kartının Kendisi */
+.prose .md-gallery-card {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  overflow: hidden; /* Resmin köşelerinin kartla birlikte yuvarlanmasını sağlar */
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+}
+
+/* Hover Efekti (Yukarı Kalkar, Turkuaz Parlar) */
+.prose .md-gallery-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px -5px rgba(0, 0, 0, 0.3);
+  border-color: rgba(45, 212, 191, 0.4);
+}
+
+/* Kartın İçindeki Resim */
+.prose .md-gallery-img {
+  width: 100%;
+  height: 180px; /* Tüm resimleri bu yüksekliğe sabitleriz */
+  object-fit: cover; /* Resmi sündürmez, boşlukları dolduracak şekilde kırpar */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin: 0 !important; /* Tailwind prose marginlerini ezer */
+}
+
+/* Kartın İçindeki Metin Alanı (Padding) */
+.prose .md-gallery-content {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Galeri Başlığı */
+.prose .md-gallery-title {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0.5rem !important;
+  color: #f8fafc !important;
+  transition: color 0.3s ease;
+}
+
+.prose .md-gallery-card:hover .md-gallery-title {
+  color: #2dd4bf !important; /* Üzerine gelince başlık turkuaz olur */
+}
+
+/* Galeri Açıklaması */
+.prose .md-gallery-desc {
+  font-size: 0.9rem !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+  color: #94a3b8 !important;
+}
+
+
+
+/* ═════════════════════════════════════════════════
+   MARKDOWN TAGS (BADGES) FOR CARDS & CONTENT
+══════════════════════════════════════════════════ */
+.prose .md-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.prose .md-tag {
+  font-size: 0.65rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  font-family: "Fira Code", monospace !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+}
+
+/* 1. SKY BLUE (Python, Tableau, PostgreSQL, Quarto) */
+.prose .md-tag.tag-python, .prose .md-tag.tag-tableau, .prose .md-tag.tag-postgresql, .prose .md-tag.tag-quarto, .prose .md-tag.tag-blue {
+  background-color: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.3); color: #38bdf8 !important;
+}
+
+/* 2. TEAL (SQL, T-SQL, PL/SQL, Apache Superset) */
+.prose .md-tag.tag-sql, .prose .md-tag.tag-tsql, .prose .md-tag.tag-plsql, .prose .md-tag.tag-superset, .prose .md-tag.tag-teal {
+  background-color: rgba(45, 212, 191, 0.1); border-color: rgba(45, 212, 191, 0.3); color: #2dd4bf !important;
+}
+
+/* 3. INDIGO (R, Statistics, Hypothesis Testing, A/B Testing) */
+.prose .md-tag.tag-r, .prose .md-tag.tag-stats, .prose .md-tag.tag-hypothesis, .prose .md-tag.tag-ab-testing, .prose .md-tag.tag-indigo {
+  background-color: rgba(129, 140, 248, 0.1); border-color: rgba(129, 140, 248, 0.3); color: #818cf8 !important;
+}
+
+/* 4. ROSE / PINK (Machine Learning, Predictive Analysis) */
+.prose .md-tag.tag-ml, .prose .md-tag.tag-predictive, .prose .md-tag.tag-rose {
+  background-color: rgba(251, 113, 133, 0.1); border-color: rgba(251, 113, 133, 0.3); color: #fb7185 !important;
+}
+
+/* 5. VIOLET / PURPLE (Deep Learning, Neural Networks, Astro) */
+.prose .md-tag.tag-dl, .prose .md-tag.tag-nn, .prose .md-tag.tag-astro, .prose .md-tag.tag-purple {
+  background-color: rgba(192, 132, 252, 0.1); border-color: rgba(192, 132, 252, 0.3); color: #c084fc !important;
+}
+
+/* 6. AMBER / YELLOW (Data Analysis, EDA, Power BI) */
+.prose .md-tag.tag-da, .prose .md-tag.tag-eda, .prose .md-tag.tag-powerbi, .prose .md-tag.tag-amber {
+  background-color: rgba(251, 191, 36, 0.1); border-color: rgba(251, 191, 36, 0.3); color: #fbbf24 !important;
+}
+
+/* 7. ORANGE (AWS Ecosystem, Rust, Jupyter) */
+.prose .md-tag.tag-aws, .prose .md-tag.tag-aws-s3, .prose .md-tag.tag-aws-iam, .prose .md-tag.tag-aws-ec2, .prose .md-tag.tag-sagemaker, .prose .md-tag.tag-rust, .prose .md-tag.tag-jupyter, .prose .md-tag.tag-orange {
+  background-color: rgba(251, 146, 60, 0.1); border-color: rgba(251, 146, 60, 0.3); color: #fb923c !important;
+}
+
+/* 8. EMERALD / GREEN (Bash, MongoDB, Docker) */
+.prose .md-tag.tag-bash, .prose .md-tag.tag-mongodb, .prose .md-tag.tag-docker, .prose .md-tag.tag-green {
+  background-color: rgba(52, 211, 153, 0.1); border-color: rgba(52, 211, 153, 0.3); color: #34d399 !important;
+}
+
+/* 9. CYAN (Go, Snowflake, MySQL) */
+.prose .md-tag.tag-go, .prose .md-tag.tag-snowflake, .prose .md-tag.tag-mysql, .prose .md-tag.tag-cyan {
+  background-color: rgba(34, 211, 238, 0.1); border-color: rgba(34, 211, 238, 0.3); color: #22d3ee !important;
+}
+
+/* 10. RED (Databricks, Oracle SQL) */
+.prose .md-tag.tag-databricks, .prose .md-tag.tag-oracle, .prose .md-tag.tag-red {
+  background-color: rgba(248, 113, 113, 0.1); border-color: rgba(248, 113, 113, 0.3); color: #f87171 !important;
+}
+
+
+
+/* ═════════════════════════════════════════════════
+   TOC CUSTOM SCROLLBAR (İNCE VE ZARİF)
+══════════════════════════════════════════════════ */
+.toc-scrollbar {
+  scrollbar-width: thin; /* Firefox için */
+  scrollbar-color: rgba(45, 212, 191, 0.3) transparent;
+}
+
+.toc-scrollbar::-webkit-scrollbar {
+  width: 4px; /* Chrome/Edge/Safari için ince bar */
+}
+
+.toc-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.toc-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(45, 212, 191, 0.2);
+  border-radius: 10px;
+}
+
+.toc-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(45, 212, 191, 0.6); /* Fareyle üstüne gelince turkuazı belirginleştir */
+}
+
+/* ═════════════════════════════════════════════════
+   TECHNICAL COMPARISON BOXES (PROS & CONS)
+══════════════════════════════════════════════════ */
+
+/* Ana Kapsayıcı: Responsive Grid */
+.prose .md-comparison {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2.5rem 0;
+}
+
+/* Ortak Kutu Yapısı */
+.prose .comp-box {
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid;
+  background-color: rgba(30, 41, 59, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Başlık Stilleri */
+.prose .comp-box h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem !important;
+  font-weight: 800 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0 !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Liste Stilleri */
+.prose .comp-box ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin: 0 !important;
+}
+
+.prose .comp-box li {
+  position: relative;
+  padding-left: 1.5rem !important;
+  margin-bottom: 0.5rem !important;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+/* Liste İkonları (Custom Bullets) */
+.prose .comp-box li::before {
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* --- RENK GRUPLARI --- */
+
+/* ADVANTAGES (Yeşilimsi) */
+.prose .comp-box.pros {
+  border-color: rgba(16, 185, 129, 0.3);
+  background: linear-gradient(to bottom right, rgba(16, 185, 129, 0.05), transparent);
+}
+.prose .comp-box.pros h4 { color: #34d399 !important; }
+.prose .comp-box.pros li::before { content: '✓'; color: #10b981; }
+
+/* DISADVANTAGES (Kırmızımsı) */
+.prose .comp-box.cons {
+  border-color: rgba(244, 63, 94, 0.3);
+  background: linear-gradient(to bottom right, rgba(244, 63, 94, 0.05), transparent);
+}
+.prose .comp-box.cons h4 { color: #fb7185 !important; }
+.prose .comp-box.cons li::before { content: '✕'; color: #f43f5e; }
+
+
+/* ═════════════════════════════════════════════════
+   TECHNICAL COMPARISON - ROW VIEW EXTENSION
+══════════════════════════════════════════════════ */
+
+/* Row Kapsayıcısı: Kartları tam genişlikte alt alta dizer */
+.prose .md-comparison-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 2.5rem 0;
+}
+
+/* Row görünümünde kartların tam genişlik almasını sağlıyoruz */
+.prose .md-comparison-row .comp-box {
+  width: 100%;
+}
+
+/* Row modunda başlıkların yanındaki o şık lila çizgiyi koruyoruz */
+.prose .md-comparison-row .comp-box h4 {
+  border-left: 4px solid;
+  padding-left: 0.75rem;
+  margin-left: -1.5rem; /* Padding'i dengelemek için */
+}
+
+/* Başlık çizgisi renkleri */
+.prose .md-comparison-row .comp-box.pros h4 { border-left-color: #10b981; }
+.prose .md-comparison-row .comp-box.cons h4 { border-left-color: #f43f5e; }
+
+
+
+/* ═════════════════════════════════════════════════
+   TECHNICAL PROJECT TIMELINE (VERTICAL)
+══════════════════════════════════════════════════ */
+
+.prose .md-timeline {
+  position: relative;
+  margin: 3rem 0;
+  padding-left: 2rem; /* Çizgi için yer açıyoruz */
+}
+
+/* Dikey Ana Çizgi */
+.prose .md-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.45rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: linear-gradient(to bottom, #2dd4bf, #c084fc); /* Turkuazdan Lilaya geçiş */
+  opacity: 0.3;
+}
+
+/* Her Bir Adım */
+.prose .timeline-step {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+.prose .timeline-step:last-child {
+  margin-bottom: 0;
+}
+
+/* Adım Noktası (Dot) */
+.prose .timeline-step::before {
+  content: '';
+  position: absolute;
+  left: -2rem; /* Çizginin üzerine tam otursun */
+  top: 0.35rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: #0f172a;
+  border: 2px solid #2dd4bf;
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.4);
+}
+
+/* Son adımın noktası lila olsun (Bitiş vurgusu) */
+.prose .timeline-step:last-child::before {
+  border-color: #c084fc;
+  box-shadow: 0 0 10px rgba(192, 132, 252, 0.4);
+}
+
+/* İçerik Kutusu */
+.prose .timeline-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.prose .timeline-content h4 {
+  margin-top: 0 !important;
+  margin-bottom: 0.4rem !important;
+  color: #f8fafc !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+}
+
+.prose .timeline-content .step-date {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #2dd4bf; /* Tarihler turkuaz parlasın */
+  margin-bottom: 0.5rem;
+}
+
+.prose .timeline-content p {
+  margin: 0 !important;
+  color: #94a3b8 !important;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ═════════════════════════════════════════════════
+   TECHNICAL FILE TREE STRUCTURE
+══════════════════════════════════════════════════ */
+
+.prose .file-tree {
+  background-color: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-left: 3px solid #c084fc; /* Lila yan çizgi */
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  font-family: 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Klasör Stili */
+.prose .file-tree .folder {
+  color: #38bdf8; /* Klasörler Gök Mavisi */
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.prose .file-tree .folder::before {
+  content: '📁';
+  font-size: 1rem;
+}
+
+/* Dosya Stili */
+.prose .file-tree .file {
+  color: #94a3b8; /* Dosyalar Gri */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.prose .file-tree .file::before {
+  content: '📄';
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+
+/* İçerideki dosyalar için girinti (Indentation) */
+.prose .file-tree .indent-1 { margin-left: 1.5rem; border-left: 1px solid rgba(255,255,255,0.05); padding-left: 0.5rem; }
+.prose .file-tree .indent-2 { margin-left: 3rem; border-left: 1px solid rgba(255,255,255,0.05); padding-left: 0.5rem; }
+.prose .file-tree .indent-3 { margin-left: 4.5rem; border-left: 1px solid rgba(255,255,255,0.05); padding-left: 0.5rem; }
+.prose .file-tree .indent-4 { margin-left: 6.0rem; border-left: 1px solid rgba(255,255,255,0.05); padding-left: 0.5rem; }
+.prose .file-tree .indent-5 { margin-left: 7.5rem; border-left: 1px solid rgba(255,255,255,0.05); padding-left: 0.5rem; }
+.prose .file-tree .indent-6 { margin-left: 9.0rem; border-left: 1px solid rgba(255,255,255,0.05); padding-left: 0.5rem; }
+
+/* Özel Dosya Vurgusu (Örn: main.py veya .env) */
+.prose .file-tree .file.active {
+  color: #2dd4bf; /* Önemli dosyalar Turkuaz */
+  font-weight: 600;
+}
+
+/* Dosya Ağacı Yorumları - Daha Sonuk ve Profesyonel Versiyon */
+.prose .file-tree .tree-comment {
+  color: #64748b; /* slate-500: daha mat bir gri */
+  font-size: 0.75rem; /* Biraz daha küçülttük */
+  font-style: italic;
+  font-weight: 400;
+  margin-left: 1.5rem; /* Dosya adından biraz daha açtık */
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  opacity: 0.55; /* İŞTE BURASI: Daha saydam yaparak o 'sonuk' efekti verdik */
+  user-select: none; /* Yorumlar kopyalanırken seçilmesin (opsiyonel) */
+  vertical-align: middle;
+}
+
+/* Yorumların başındaki // işareti de sonuk kalsın */
+.prose .file-tree .tree-comment::before {
+  content: "// ";
+  color: #2dd4bf; 
+  opacity: 0.7; /* Turkuaz rengi de biraz kıstık ki parlamasın */
+}
+
+
+/* ═════════════════════════════════════════════════
+   TECH QUICK GLANCE (PROJECT SPEC SUMMARY)
+══════════════════════════════════════════════════ */
+
+.prose .tech-glance {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.8) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-left: 4px solid #38bdf8; /* Gök Mavisi Vurgu */
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.prose .glance-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Etiket (Label) */
+.prose .glance-label {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #94a3b8; /* Soft Gri */
+}
+
+/* Değer (Value) */
+.prose .glance-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Değerlerin yanına opsiyonel küçük bir dot ekleyelim */
+.prose .glance-value::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background-color: #38bdf8;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px #38bdf8;
+}
+
+
+/* ═════════════════════════════════════════════════
+   ELITE TECHNICAL GARDEN COMPONENTS
+══════════════════════════════════════════════════ */
+
+/* 1. MATH & FORMULA FOCUS */
+.prose .math-focus {
+  background: rgba(192, 132, 252, 0.03);
+  border: 1px dashed rgba(192, 132, 252, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 2.5rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.prose .math-focus::before {
+  content: '∑';
+  position: absolute;
+  top: -1rem;
+  right: -0.5rem;
+  font-size: 8rem;
+  color: rgba(192, 132, 252, 0.05);
+  font-family: serif;
+}
+
+/* 2. ACADEMIC CITATION */
+.prose .md-citation {
+  background: rgba(30, 41, 59, 0.5);
+  border-left: 4px solid #c084fc;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: 0 0.75rem 0.75rem 0;
+  font-style: italic;
+}
+
+.prose .citation-author {
+  display: block;
+  margin-top: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #2dd4bf; /* Yazar ismi turkuaz parlasın */
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* 3. KEY TAKEAWAY (Özet Çıkarım) */
+.prose .key-takeaway {
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.1) 0%, rgba(192, 132, 252, 0.1) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  margin: 2.5rem 0;
+}
+
+.prose .key-takeaway h5 {
+  margin: 0 0 0.75rem 0 !important;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #f8fafc !important;
+}
+
+.prose .key-takeaway h5::before {
+  content: '💡';
+}
+
+
+/* ═════════════════════════════════════════════════
+   DOCUMENTATION & KNOWLEDGE BASE COMPONENTS
+══════════════════════════════════════════════════ */
+
+/* 1. INTERACTIVE DETAILS (Ayrıntı Kutusu) */
+.prose details {
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(192, 132, 252, 0.2);
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem;
+  margin: 1.5rem 0;
+  transition: all 0.3s ease;
+}
+
+.prose details[open] {
+  border-color: rgba(192, 132, 252, 0.5);
+  box-shadow: 0 0 15px rgba(192, 132, 252, 0.05);
+}
+
+.prose summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #c084fc;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.prose summary::-webkit-details-marker { display: none; }
+
+.prose summary::before {
+  content: '→';
+  transition: transform 0.3s ease;
+}
+
+.prose details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+/* 2. GLOSSARY HIGHLIGHT (Terim Vurgusu) */
+.prose .term {
+  color: #2dd4bf;
+  border-bottom: 1px dashed #2dd4bf;
+  cursor: help;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.prose .term:hover {
+  background: rgba(45, 212, 191, 0.1);
+  color: #5eead4;
+}
+
+/* 3. ALGORITHM STEPS (Kompakt Adım Listesi) */
+.prose .algo-steps {
+  list-style: none !important;
+  padding-left: 0 !important;
+  counter-reset: step-counter;
+}
+
+.prose .algo-steps li {
+  position: relative;
+  padding-left: 3rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.prose .algo-steps li::before {
+  counter-increment: step-counter;
+  content: counter(step-counter);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.8rem;
+  height: 1.8rem;
+  background: #0f172a;
+  border: 2px solid #2dd4bf;
+  color: #2dd4bf;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.8rem;
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.2);
+}
+
+/* ═════════════════════════════════════════════════
+   PROFESSIONAL REFERENCE & RESOURCE LINKS
+══════════════════════════════════════════════════ */
+
+/* 1. REFERENCE LIST (Kompakt Liste) */
+.prose .reference-list {
+  background: rgba(30, 41, 59, 0.2);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.prose .ref-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.prose .ref-item:last-child { border-bottom: none; }
+
+.prose .ref-item::before {
+  content: '🔗';
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.prose .ref-link {
+  color: #2dd4bf !important; /* Turkuaz */
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+}
+
+.prose .ref-link:hover {
+  color: #5eead4 !important;
+  text-decoration: underline !important;
+}
+
+/* 2. PROJECT EXTERNAL CARD (Vurgulu Kart) */
+.prose .external-project-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(192, 132, 252, 0.1), transparent);
+  border: 1px solid rgba(192, 132, 252, 0.2);
+  border-left: 4px solid #c084fc;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  transition: transform 0.2s ease;
+}
+
+.prose .external-project-card:hover {
+  transform: translateX(5px);
+  background: linear-gradient(90deg, rgba(192, 132, 252, 0.15), transparent);
+}
+
+.prose .project-info h5 {
+  margin: 0 !important;
+  color: #f8fafc !important;
+  font-size: 1rem !important;
+}
+
+.prose .project-info p {
+  margin: 0 !important;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.prose .visit-btn {
+  background: #c084fc;
+  color: #0f172a !important;
+  padding: 0.4rem 1rem;
+  border-radius: 0.375rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none !important;
+}

@@ -1,0 +1,70 @@
+---
+import { getCollection } from 'astro:content';
+
+const { currentId, collectionName } = Astro.props;
+
+// Mevcut sayfanın hangi klasörde olduğunu bul (Örn: build_website)
+const projectFolder = currentId.split('/')[0];
+
+// Aynı koleksiyondaki tüm dosyaları çek
+const allEntries = await getCollection(collectionName as any);
+
+// Sadece aynı klasördeki ve 'index' olmayan dosyaları filtrele, ID/numarasına göre diz
+const projectSteps = allEntries
+  .filter(entry => entry.id.startsWith(projectFolder) && !entry.id.endsWith('index'))
+  .sort((a, b) => a.id.localeCompare(b.id));
+
+// Eğer klasörde sadece 1 dosya varsa (seri değilse) roadmap'i hiç gösterme
+const isSeries = projectSteps.length > 1;
+---
+
+{isSeries && (
+  <div class="not-prose mb-12">
+    <details class="group border border-teal-500/30 bg-slate-900/40 rounded-xl overflow-hidden shadow-lg" open>
+      <summary class="flex items-center justify-between p-4 cursor-pointer bg-gradient-to-right from-teal-500/10 to-transparent hover:bg-teal-500/20 transition-all select-none">
+        <div class="flex items-center gap-3">
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-teal-500 text-slate-900 font-bold text-sm shadow-[0_0_10px_rgba(45,212,191,0.5)]">
+            {projectSteps.findIndex(s => s.id === currentId) + 1}
+          </span>
+          <span class="text-teal-400 font-bold tracking-wide uppercase text-sm">Project Roadmap: Step-by-Step Navigation</span>
+        </div>
+        <span class="text-teal-500 group-open:rotate-180 transition-transform duration-300">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </span>
+      </summary>
+      
+      <div class="p-4 flex flex-col gap-3 bg-slate-900/20 border-t border-teal-500/20">
+        {projectSteps.map((step, index) => (
+          <a 
+            href={`/${collectionName.replace('_', '-')}/${step.slug}`}
+            class={`flex items-start gap-4 px-5 py-4 rounded-lg border transition-all duration-200
+              ${step.id === currentId 
+                ? 'bg-teal-500 border-teal-500 text-slate-900 shadow-[0_0_15px_rgba(45,212,191,0.4)]' 
+                : 'bg-slate-800/50 border-slate-700 text-slate-300 hover:border-teal-500/50 hover:text-teal-400'}`}
+          >
+            {/* Numaratör */}
+            <span class={`flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-full text-xs font-bold border mt-0.5
+              ${step.id === currentId ? 'bg-slate-900 text-teal-400 border-slate-900' : 'bg-slate-700 border-slate-600 text-slate-400'}`}>
+              {index + 1}
+            </span>
+            
+            {/* Başlık ve Açıklama (Description) Kısmı */}
+            <div class="flex flex-col">
+              <span class="font-bold text-base leading-tight">{step.data.title}</span>
+              
+              {/* Eğer description varsa, altına şık bir şekilde ekle */}
+              {step.data.description && (
+                <span class={`text-sm mt-1.5 leading-relaxed 
+                  ${step.id === currentId ? 'text-teal-950 font-medium' : 'text-slate-400'}`}>
+                  {step.data.description}
+                </span>
+              )}
+            </div>
+          </a>
+        ))}
+      </div>
+    </details>
+  </div>
+)}

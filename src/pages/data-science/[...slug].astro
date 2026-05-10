@@ -1,0 +1,31 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('data_science');
+  
+  return entries.map((entry, index) => ({
+    params: { slug: entry.id === 'index' ? undefined : entry.id },
+    props: { 
+      entry,
+      next: entries[index + 1],
+      prev: entries[index - 1]
+    },
+  }));
+}
+
+const { entry, next, prev } = Astro.props;
+const { Content, headings } = await render(entry);
+---
+
+<ArticleLayout 
+  frontmatter={entry.data} 
+  headings={headings} 
+  currentId={entry.id} 
+  collectionName="data_science"
+  next={next}
+  prev={prev}
+>
+  <Content />
+</ArticleLayout>
